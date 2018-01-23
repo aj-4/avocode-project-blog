@@ -1,10 +1,11 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import logo from '../../static/avocado.svg'
 
 const Header = () => (
   <div
     style={{
-      background: 'lightblue',
+      background: '#f8ffad',
       marginBottom: '1.45rem',
     }}
   >
@@ -15,16 +16,29 @@ const Header = () => (
         padding: '1.45rem 1.0875rem',
       }}
     >
+      
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
-            color: 'white',
+            color: '#57913a',
             textDecoration: 'none',
+            textShadow: '1px 1.5px 1px 1px black',
           }}
         >
-          aaron = developer
+          avocode
+          <img 
+          src={logo} alt="logo" 
+          className="avocado-logo floating"
+          style={{
+            float: 'left',
+            margin: '0 20px'
+          }} />
         </Link>
+        <p style={{ 
+          'fontSize': '0.8rem',
+          'margin': 0,
+          }}> by aaron </p>
       </h1>
     </div>
   </div>

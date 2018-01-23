@@ -1,36 +1,47 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import BlogPostPreview from './BlogPostPreview'
 
-const blogPosts = [
-  {
-    title: 'First Post',
-    desc: 'an amazing post',    
-    postImg: 'https://d1o50x50snmhul.cloudfront.net/wp-content/uploads/2017/02/22180000/ff3ywn-1-800x533.jpg',
-    body: 'This is the beginning of a great thing'
-  },
-  {
-    title: 'Second Post',
-    desc: 'an almost as amazing post',    
-    postImg: 'https://d1o50x50snmhul.cloudfront.net/wp-content/uploads/2017/02/22180000/ff3ywn-1-800x533.jpg',
-    body: 'This is the end of a great thing'
-  }
-]
-
-const IndexPage = () => (
+const IndexPage = ({data}) => (
   <div>
-    <h2>1 project. 1 team. 4 weeks.</h2>
+    <h2>a project blog.</h2>
     <div>
-      {/* {
-        blogPosts && blogPosts.length &&
-        blogPosts.map((post, i) => {
-          return < BlogPostPreview key={i} post={post}/>
-        })
-      } */}
-      <Link to="/blog-home/">Go to blog</Link>
+      {/* <Link to="/blog-home/">Home</Link> */}
     </div>
+    <h4>index</h4>
+    <ul>
+      { data.allMarkdownRemark &&
+        data.allMarkdownRemark.edges.map(post => {
+        return (<li key={post.node.id} >
+          <Link
+            key={post.node.id}
+            to={post.node.frontmatter.path}>
+            {post.node.frontmatter.title}
+          </Link>
+        </li>
+        );
+      })}
+    </ul>
     
   </div>
 )
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    allMarkdownRemark(
+      limit: 10
+      sort: { fields:[frontmatter___date], order:ASC }
+      filter: {frontmatter: {published: { eq: true } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
