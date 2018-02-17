@@ -1,6 +1,6 @@
 ---
 path: '/aws-101'
-title: 'Intro to AWS (1.3)'
+title: 'AWS EC2 Architecture (1.3)'
 published: true
 date: '2018-01-28'
 ---
@@ -16,8 +16,6 @@ Inside each of these containers there will be two Docker instances - also known 
 
 ### Cassandra in the VPC
 At the lowest level, (ECS > E2 > Docker Container) one container will own a node server which handles our requests (for booking and view events, respectively) and the other will hold a Cassandra DB. This is a one-way flow from the server to Cassandra, which will parse and format the JSON to be inserted into the DB via 'express-cassandra' ORM.
-
-### Challenges
 
 #### In Theory vs. Execution
 This flow sounds simple enough, but simply registering and running an E2 instance from scratch requires extensive overhead in terms of setting up keys, security policies, and opening ports.
