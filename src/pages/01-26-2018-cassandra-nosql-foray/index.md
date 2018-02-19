@@ -1,6 +1,6 @@
 ---
 path: '/cassandra-101'
-title: 'Intro to Cassandra (1.2)'
+title: 'Cassandra: A Primer (1.2)'
 published: true
 date: '2018-01-27'
 ---
